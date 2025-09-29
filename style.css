@@ -1,0 +1,217 @@
+header { 
+    width: 100vh;
+}
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* ------------------------------------- */
+/* Variável para a cor de transição */
+/* ------------------------------------- */
+/* Use a cor do fundo do corpo do site como base. 
+   Eu mantive o preto escuro (próximo à cor da base da imagem). */
+:root {
+    --cor-fundo-site: #0c0c0c; 
+}
+
+/* ------------------------------------- */
+/* Contêiner Principal */
+/* ------------------------------------- */
+.hero-header-africa {
+    width: 100%;
+    /* ESSENCIAL: Permite que o gradiente seja posicionado absolutamente em relação a este elemento */
+    position: relative; 
+    /* Esconder qualquer excesso, embora com a tag <img> isso seja menos provável */
+    overflow: hidden; 
+}
+
+/* ------------------------------------- */
+/* A Imagem (sem distorção) */
+/* ------------------------------------- */
+.hero-image {
+    width: 100%; /* Faz a imagem ocupar 100% da largura do contêiner */
+    height: auto; /* ESSENCIAL: Mantém a proporção original da imagem, evitando distorção */
+    display: block; /* Remove possíveis espaços em branco abaixo da imagem */
+}
+
+/* ------------------------------------- */
+/* O GRADIENTE (a sobreposição de transição) */
+/* ------------------------------------- */
+.gradient-overlay {
+    /* ESSENCIAL: Posiciona a div de gradiente por cima da imagem */
+    position: absolute;
+    bottom: 0; /* Cola o gradiente na parte inferior da imagem */
+    left: 0;
+    width: 100%;
+    height: 150px; /* Altura do gradiente - AJUSTE este valor se precisar de uma transição mais longa/curta */
+    
+    /* Cria o gradiente: de totalmente transparente para a cor de fundo do site */
+    background: linear-gradient(
+        to bottom, 
+        transparent 0%, 
+        var(--cor-fundo-site) 100%
+    );
+
+    /* Opcional: Para escurecer levemente a parte inferior (onde o texto "Voz e Memória" está) */
+    /* background: linear-gradient(
+        to bottom, 
+        transparent 0%, 
+        rgba(0,0,0,0.5) 75%, 
+        var(--cor-fundo-site) 100%
+    ); */
+}
+
+
+/* ------------------------------------- */
+/* Corpo do Site (A seção que vem depois do header) */
+/* ------------------------------------- */
+.site-content {
+    /* ESSENCIAL: background-color deve ser IGUAL ao 100% do gradiente (var(--cor-fundo-site)) */
+    background-color: var(--cor-fundo-site); 
+    color: white; 
+    min-height: 50vh; /* Apenas para demonstração */
+    margin: auto;
+    padding: 15vh;
+}
+
+.site-content h2, .site-content p {
+    /* Estilos de texto para garantir contraste */
+    color: white;
+}
+
+/* Cor de fundo principal do seu site */
+body {
+    background-color: black;
+    /* Centraliza o container na página para melhor visualização */
+
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Garante que o body ocupe toda a altura da tela */
+    margin: 0;
+}
+
+/* O CONTAINER que vai abrigar as informações */
+.card-destaque {
+    /* Fundo Claro: O mais importante para o destaque em fundo preto */
+    background-color: white; 
+    
+    /* Configurações de Espaçamento e Tamanho */
+    max-width: 800px; /* Limita a largura para que as linhas de texto não sejam muito longas */
+    width: 90%; /* Ocupa 90% da largura em telas menores */
+    padding: 40px; /* Espaçamento interno para que o conteúdo não encoste nas bordas */
+    border-radius: 8px; /* Cantos levemente arredondados, mais suaves */
+    
+    /* Sombra Sutil: Faz o container parecer que está "flutuando" */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5), /* Sombra principal mais escura */
+                0 6px 6px rgba(0, 0, 0, 0.4);   /* Sombra secundária para profundidade */
+    
+    /* Opcional: Efeito de transição ao passar o mouse para um toque de interatividade */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: auto;
+}
+
+.card-destaque:hover {
+    /* Levanta ligeiramente o container ao passar o mouse */
+    transform: translateY(-5px); 
+    box-shadow: 0 15px 30px rgba(63, 63, 63, 1), 
+                0 8px 8px rgba(63, 63, 63, 1);
+}
+
+/* ---------------------------------------------------- */
+/* OTIMIZAÇÃO DA LEITURA (Tipografia) */
+/* ---------------------------------------------------- */
+.card-destaque p {
+    color: #333333; /* Usar cinza escuro é melhor que preto puro para a leitura em fundo claro */
+    line-height: 1.6; /* Aumenta o espaçamento entre as linhas (muito importante para leitura agradável) */
+    font-size: 1.25em;
+}
+
+.card-destaque h2 {
+    color: rgb(216, 151, 54); /* Título em uma cor de destaque (azul é um bom contraste) */
+    border-bottom: 2px solid #f0f0f0; /* Linha de separação sutil */
+    padding-bottom: 10px;
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    font-size: 2em;
+}
+/* ----------------------------------------------- */
+/* Container da Galeria de Vídeos (Permanece o mesmo) */
+/* ----------------------------------------------- */
+.video-gallery {
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: center; 
+    gap: 20px; 
+    max-width: 840px; 
+    margin: 0 auto; 
+    padding: 20px 0;
+}
+
+/* ----------------------------------------------- */
+/* Item de Vídeo Individual (Permanece o mesmo) */
+/* ----------------------------------------------- */
+.video-item {
+    background-color: #222; 
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    padding: 15px;
+    text-align: center;
+    
+    /* Cálculos de Largura: Garante 3 itens por linha */
+    flex: 1 1 calc(33.333% - 20px); 
+    min-width: 250px; 
+    max-width: 280px; 
+
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-between; 
+}
+
+/* ----------------------------------------------- */
+/* A CHAVE PARA O VÍDEO LOCAL */
+/* ----------------------------------------------- */
+.video-item video {
+    /* Ocupa toda a largura do card */
+    width: 100%; 
+    /* Mantém a proporção 16:9 e é responsivo */
+    aspect-ratio: 16 / 9; 
+    display: block; 
+    border-radius: 4px; /* Opcional: bordas arredondadas no player */
+}
+
+/* ----------------------------------------------- */
+/* Estilos de Conteúdo */
+/* ----------------------------------------------- */
+.video-item h3 {
+    color:rgb(216, 151, 54); 
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-size: 1.3em;
+}
+
+.video-item p {
+    color: #bbb; 
+    font-size: 0.9em;
+    line-height: 1.4;
+    margin-bottom: 0;
+}
+
+/* ----------------------------------------------- */
+/* Responsividade (Permanece a mesma) */
+/* ----------------------------------------------- */
+@media (max-width: 768px) {
+    .video-gallery {
+        flex-direction: column; 
+        align-items: center; 
+    }
+
+    .video-item {
+        max-width: 90%; 
+        flex: 1 1 100%; 
+    }
+}
+#poesia {
+    text-align: center;
+}
