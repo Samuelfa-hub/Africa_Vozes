@@ -139,79 +139,120 @@ body {
 /* ----------------------------------------------- */
 /* Container da Galeria de Vídeos (Permanece o mesmo) */
 /* ----------------------------------------------- */
-.video-gallery {
-    display: flex; 
-    flex-wrap: wrap; 
-    justify-content: center; 
-    gap: 20px; 
-    max-width: 840px; 
-    margin: 0 auto; 
-    padding: 20px 0;
-}
-
-/* ----------------------------------------------- */
-/* Item de Vídeo Individual (Permanece o mesmo) */
-/* ----------------------------------------------- */
-.video-item {
-    background-color: #222; 
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    padding: 15px;
+/* Cor de fundo para a seção (ex: usando a cor escura do seu site) */
+.video-display-section {
+    background-color: var(--cor-fundo-site, #0c0c0c); 
+    color: white;
+    padding: 60px 20px; /* Espaçamento da seção */
     text-align: center;
+}
+
+.video-display-section h2 {
+    font-size: 2.8em;
+    margin-bottom: 50px;
+    color: #f0f0f0; /* Cor para o título */
+}
+
+/* ------------------------------------- */
+/* Container Flexbox para os Vídeos */
+/* ------------------------------------- */
+.video-display-container {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha */
+    justify-content: center; /* Centraliza os itens na linha */
+    gap: 20px; /* Espaçamento entre os cards de vídeo */
+    max-width: 1400px; /* Largura máxima para a galeria em telas muito largas */
+    margin: 0 auto; /* Centraliza o container da galeria na seção */
+}
+
+/* ------------------------------------- */
+/* Cada Item de Vídeo (o card individual) */
+/* ------------------------------------- */
+.video-display-item {
+    background-color: #222; /* Fundo escuro para o card */
+    border-radius: 10px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+    overflow: hidden; /* Importante para bordas arredondadas do iframe */
+    padding-bottom: 15px; /* Espaço para o título abaixo do vídeo */
     
-    /* Cálculos de Largura: Garante 3 itens por linha */
-    flex: 1 1 calc(33.333% - 20px); 
-    min-width: 250px; 
-    max-width: 280px; 
+    /* Largura para 5 itens por linha. 100% / 5 = 20% */
+    /* Calculamos 20% menos os gaps. */
+    flex: 1 1 calc(20% - 16px); /* 16px = (4 * gap) / 5. (ajuste fino para 5 itens) */
+    min-width: 220px; /* Largura mínima para o vídeo em telas menores */
+    max-width: 260px; /* Largura máxima para cada item em telas muito largas */
 
-    display: flex; 
+    display: flex; /* Para alinhar o título abaixo do vídeo */
     flex-direction: column;
-    justify-content: space-between; 
+    justify-content: flex-start; /* Alinha o conteúdo ao topo */
+    align-items: center; /* Centraliza o título */
 }
 
-/* ----------------------------------------------- */
-/* A CHAVE PARA O VÍDEO LOCAL */
-/* ----------------------------------------------- */
-.video-item video {
-    /* Ocupa toda a largura do card */
-    width: 100%; 
-    /* Mantém a proporção 16:9 e é responsivo */
-    aspect-ratio: 16 / 9; 
-    display: block; 
-    border-radius: 4px; /* Opcional: bordas arredondadas no player */
+/* ------------------------------------- */
+/* iframe Responsivo (YouTube) */
+/* ------------------------------------- */
+.video-display-item iframe {
+    width: 100%;
+    /* Truque para manter a proporção 16:9 */
+    aspect-ratio: 16 / 9; /* Propriedade moderna */
+    display: block; /* Remove espaços extras abaixo do iframe */
+    /* border-bottom: 1px solid #333; /* Opcional: separador sutil */
 }
 
-/* ----------------------------------------------- */
-/* Estilos de Conteúdo */
-/* ----------------------------------------------- */
-.video-item h3 {
-    color:rgb(216, 151, 54); 
+/* ------------------------------------- */
+/* Título do Vídeo */
+/* ------------------------------------- */
+.video-display-item h3 {
+    color: #007bff; /* Cor para o título do vídeo */
+    font-size: 1.1em;
     margin-top: 15px;
-    margin-bottom: 5px;
-    font-size: 1.3em;
-}
-
-.video-item p {
-    color: #bbb; 
-    font-size: 0.9em;
-    line-height: 1.4;
     margin-bottom: 0;
+    padding: 0 10px; /* Padding horizontal para o texto */
+    text-align: center;
 }
 
-/* ----------------------------------------------- */
-/* Responsividade (Permanece a mesma) */
-/* ----------------------------------------------- */
-@media (max-width: 768px) {
-    .video-gallery {
-        flex-direction: column; 
-        align-items: center; 
-    }
+/* ------------------------------------- */
+/* Responsividade para Telas Menores */
+/* ------------------------------------- */
 
-    .video-item {
-        max-width: 90%; 
-        flex: 1 1 100%; 
+/* 4 Vídeos por linha em telas médias */
+@media (max-width: 1200px) {
+    .video-display-item {
+        flex: 1 1 calc(25% - 15px); /* 100% / 4 = 25% */
+    }
+}
+
+/* 3 Vídeos por linha em tablets */
+@media (max-width: 992px) {
+    .video-display-item {
+        flex: 1 1 calc(33.333% - 13.333px); /* 100% / 3 = 33.333% */
+        /* Ajuste fino do calc() para 3 items com 20px de gap */
+    }
+}
+
+/* 2 Vídeos por linha em tablets menores/celulares maiores */
+@media (max-width: 768px) {
+    .video-display-item {
+        flex: 1 1 calc(50% - 10px); /* 100% / 2 = 50% */
+        min-width: 280px; /* Garante que os vídeos não fiquem muito pequenos */
+    }
+    .video-display-section h2 {
+        font-size: 2em;
+    }
+}
+
+/* 1 Vídeo por linha em celulares */
+@media (max-width: 480px) {
+    .video-display-item {
+        flex: 1 1 90%; /* Ocupa a maior parte da largura da tela */
+        max-width: 400px; /* Limita a largura para celulares muito largos */
+    }
+    .video-display-section {
+        padding: 40px 10px;
     }
 }
 #poesia {
+    text-align: center;
+}
+#main_paragraph { 
     text-align: center;
 }
