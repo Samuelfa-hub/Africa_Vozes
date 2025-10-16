@@ -256,3 +256,16 @@ body {
 #main_paragraph { 
     text-align: center;
 }
+#large_video { 
+    /* Remove a propriedade display: flex desnecessária para o iframe */
+    /* width: 100%; para ocupar a largura total do card */
+    /* aspect-ratio: 16 / 9; para manter a proporção (moderno) */
+    width: 100%; /* Ocupa a largura total do card-destaque */
+    max-width: 100%; /* Garante que não ultrapasse a largura do pai */
+    aspect-ratio: 16 / 9; /* Mantém a proporção de vídeo padrão (16:9) */
+    display: block; /* Remove possíveis margens */
+    margin: 20px 0; /* Adiciona espaçamento vertical acima e abaixo do iframe */
+    padding: 0; /* Remove o padding que estava no CSS original, que pode atrapalhar o cálculo da largura */
+    border-radius: 8px; /* Arredonda as bordas do iframe */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5); /* Sombra para destaque */
+}
